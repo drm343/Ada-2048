@@ -6,3 +6,6 @@ Open src/matrix_2048.ads to mofify.
 
 1. Grid_Size for game's board size, default is 4.
 2. Win_Value for check player win or not, default is 2048.
+
+## Reference
+https://github.com/Lucretia/sdlada
