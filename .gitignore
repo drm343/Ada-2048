@@ -3,3 +3,13 @@
 
 # Ada Library Information
 *.ali
+
+# Ada c binding
+*b~*.ads
+*b~*.adb
+
+# Shared Library
+*lib*.so.*
+
+# Python cache dir
+__pycache__

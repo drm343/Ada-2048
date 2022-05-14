@@ -117,7 +117,7 @@ package body Mode is
       when SKIP =>
         null;
       when CONTINUE =>
-        World_Machine.View.Draw_Board(r, board);
+        World_Machine.View.Update_Score(r, score);
       when WIN =>
         running := false;
         Ada.Text_IO.Put_Line("You Win");
@@ -147,7 +147,7 @@ package body Mode is
       when SKIP =>
         null;
       when CONTINUE =>
-        World_Machine.View.Draw_Board(r, board);
+        World_Machine.View.Update_Score(r, score);
       when WIN =>
         running := false;
         Ada.Text_IO.Put_Line("You Win");

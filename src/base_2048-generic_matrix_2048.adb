@@ -10,41 +10,51 @@ package body Base_2048.Generic_Matrix_2048 is
   end Put_Line;
 
 
+------------------------------------------------------------
+-- Direction Change                                       --
+------------------------------------------------------------
   function Swap(X : Matrix_2048) return Matrix_2048 is
-    cell_1 : Matrix_2048 := (others => (others => 0));
+    Y : Matrix_2048 := (others => (others => 0));
   begin
     for I in X'Range(1) loop
       for J in X'Range(2) loop
-        cell_1(I, X'Last - J + 1) := X(I, J);
+        Y(I, X'Last - J + 1) := X(I, J);
       end loop;
     end loop;
-    return cell_1;
+
+    return Y;
   end Swap;
 
 
   function Rotate_Right(X : Matrix_2048) return Matrix_2048 is
-    cell_1 : Matrix_2048 := (others => (others => 0));
+    Y : Matrix_2048 := (others => (others => 0));
   begin
     for I in X'Range(1) loop
       for J in X'Range(2) loop
-        cell_1(J, X'Last - I + 1) := X(I, J);
+        Y(J, X'Last - I + 1) := X(I, J);
       end loop;
     end loop;
-    return cell_1;
+
+    return Y;
   end Rotate_Right;
 
 
   function Rotate_Left(X : Matrix_2048) return Matrix_2048 is
-    cell_1 : Matrix_2048 := (others => (others => 0));
+    Y : Matrix_2048 := (others => (others => 0));
   begin
     for I in X'Range(1) loop
       for J in X'Range(2) loop
-        cell_1(X'Last - J + 1, I) := X(I, J);
+        Y(X'Last - J + 1, I) := X(I, J);
       end loop;
     end loop;
-    return cell_1;
+
+    return Y;
   end Rotate_Left;
 
+
+------------------------------------------------------------
+-- Compose Matrix                                         --
+------------------------------------------------------------
   function "+"(X, Y : Matrix_2048) return Matrix_2048 is
     cell_1 : Matrix_2048 := (others => (others => 0));
   begin
@@ -98,7 +108,6 @@ package body Base_2048.Generic_Matrix_2048 is
   begin
     return sum(2 * X);
   end Score;
-
 
   function Compose(X : in Matrix_2048; Move_Area : out Matrix_2048) return Matrix_2048 is
     move : Matrix_2048 := (others => (others => 0));
@@ -253,6 +262,7 @@ package body Base_2048.Generic_Matrix_2048 is
     move_area  : Matrix_2048 := board;
     score_area : Matrix_2048 := Compose(board, move_area);
   begin
+
     if board = (move_area + score_area) then
       if Scan_Lost(board) then
         return LOST;
@@ -267,6 +277,10 @@ package body Base_2048.Generic_Matrix_2048 is
       return WIN;
     else
       Set_Number(board);
+
+      if Scan_Lost(board) then
+        return LOST;
+      end if;
     end if;
 
     return CONTINUE;

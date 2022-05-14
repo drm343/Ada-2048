@@ -1,7 +1,7 @@
 MAIN=src/main_ada_2048.adb
 LINK_ARGS=-lSDL2 -lSDL2_ttf obj/my_world-event.o
 SOURCE_PATH=-aIsdl2 -aIrc_cstring
-OPTIMIZATION=-O0 -gnata
+OPTIMIZATION=-O3 -gnata
 
 
 all:
