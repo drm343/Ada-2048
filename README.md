@@ -1,4 +1,7 @@
 # Ada-2048
+
+Migrate to gitlab. https://gitlab.com/realnami/Ada-2048
+
 Write a demo 2048 game with Ada and SDL2.
 
 ## Custom your own 2048 game.
